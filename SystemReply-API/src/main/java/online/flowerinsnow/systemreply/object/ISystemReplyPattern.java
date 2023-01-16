@@ -21,6 +21,11 @@ public interface ISystemReplyPattern {
      */
     @NotNull String getPattern();
 
+    /**
+     * 设置规则内容
+     *
+     * @param pattern 规则内容
+     */
     void setPattern(@NotNull String pattern);
 
     /**
