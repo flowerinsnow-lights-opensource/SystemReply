@@ -6,13 +6,13 @@ import org.jetbrains.annotations.NotNull;
  * SystemReply一个匹配规则
  * 调用完操作方法后需要手动调用保存方法才能保存配置文件
  */
-public interface ISystemReplyPattern {
+public interface IPattern {
     /**
      * 获取包含该匹配规则的条目
      *
      * @return 包含该匹配规则的条目
      */
-    @NotNull ISystemReplyEntry getOwnerEntry();
+    @NotNull IEntry getOwnerEntry();
 
     /**
      * 获取匹配规则内容
@@ -29,16 +29,16 @@ public interface ISystemReplyPattern {
     void setPattern(@NotNull String pattern);
 
     /**
-     * 获取是否是正则表达式
+     * 获取匹配模式
      *
-     * @return 是否是正则表达式
+     * @return 匹配模式
      */
-    boolean isRegex();
+    @NotNull PatternMode getMode();
 
     /**
-     * 设置是否是正则表达式
+     * 设置匹配模式
      *
-     * @param regex 是否是正则表达式
+     * @param mode 匹配模式
      */
-    void setRegex(boolean regex);
+    void setMode(@NotNull PatternMode mode);
 }
