@@ -1,4 +1,4 @@
-package online.flowerinsnow.systemreply.object;
+package online.flowerinsnow.systemreply.api.object;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -41,4 +41,33 @@ public interface IPattern {
      * @param mode 匹配模式
      */
     void setMode(@NotNull PatternMode mode);
+
+    /**
+     * 获取是否忽略大小写
+     *
+     * @return 是否忽略大小写
+     */
+    boolean isIgnoreCase();
+
+    /**
+     * 设置是否忽略大小写
+     *
+     * @param ignoreCase 是否忽略大小写
+     */
+    void setIgnoreCase(boolean ignoreCase);
+
+    /**
+     * 是否匹配该消息
+     *
+     * @param message 消息
+     * @return 是否匹配
+     */
+    boolean match(@NotNull String message);
+
+    /**
+     * 将该规则编写为文本内容
+     *
+     * @return 编写的文本内容
+     */
+    @NotNull String text();
 }

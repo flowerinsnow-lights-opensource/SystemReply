@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>online.flowerinsnow</groupId>
-        <artifactId>SystemReply</artifactId>
+        <artifactId>SystemReply-parent</artifactId>
         <version>1.0.0</version>
     </parent>
 
@@ -27,7 +27,7 @@
                     <createDependencyReducedPom>false</createDependencyReducedPom>
                     <relocations>
                         <relocation>
-                            <pattern>io.netty</pattern>
+                            <pattern>cc.carm.lib.configuration</pattern>
                             <shadedPattern>shaded.io.netty</shadedPattern>
                         </relocation>
                     </relocations>
@@ -48,6 +48,11 @@
         <repository>
             <id>spigotmc</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+        </repository>
+
+        <repository>
+            <id>EasyConfiguration</id>
+            <url>https://maven.pkg.github.com/CarmJos/MineConfiguration</url>
         </repository>
     </repositories>
 
@@ -71,6 +76,13 @@
             <artifactId>annotations</artifactId>
             <version>24.0.0</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>cc.carm.lib</groupId>
+            <artifactId>mineconfiguration-bukkit</artifactId>
+            <version>2.3.0</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

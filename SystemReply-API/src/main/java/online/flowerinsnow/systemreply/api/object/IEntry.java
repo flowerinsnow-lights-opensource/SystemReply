@@ -1,6 +1,7 @@
-package online.flowerinsnow.systemreply.object;
+package online.flowerinsnow.systemreply.api.object;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.List;
@@ -38,7 +39,16 @@ public interface IEntry {
      *
      * @param patterns 规则列表
      */
-    void setPatterns(@NotNull Collection<IPattern> patterns);
+    void setPatterns(@Nullable Collection<IPattern> patterns);
+
+    /**
+     * 在此条目下创建规则
+     *
+     * @param mode 规则模式
+     * @param pattern 规则内容
+     * @return 创建好的规则
+     */
+    @NotNull IPattern createPattern(@NotNull PatternMode mode, @NotNull String pattern, boolean ignoreCase);
 
     /**
      * 获取回复的消息，一个代表一行
@@ -52,7 +62,7 @@ public interface IEntry {
      *
      * @param replies 回复的消息
      */
-    void setReplies(@NotNull Collection<String> replies);
+    void setReplies(@Nullable Collection<String> replies);
 
     /**
      * 获取是否允许继续匹配其他消息
@@ -95,6 +105,20 @@ public interface IEntry {
      * @param block 是否阻止该消息发送出去
      */
     void setBlock(boolean block);
+
+    /**
+     * 获取触发该条目所需的权限
+     *
+     * @return 触发该条目所需的权限
+     */
+    @NotNull Set<String> requiredPermissions();
+
+    /**
+     * 设置触发该条目所需的权限
+     *
+     * @param requiredPermissions 触发该条目所需的权限
+     */
+    void setRequiredPermissions(@Nullable Collection<String> requiredPermissions);
 
     /**
      * 删除该条目

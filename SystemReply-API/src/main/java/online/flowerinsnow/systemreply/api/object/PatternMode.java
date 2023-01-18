@@ -1,4 +1,6 @@
-package online.flowerinsnow.systemreply.object;
+package online.flowerinsnow.systemreply.api.object;
+
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 规则的匹配规则
@@ -23,6 +25,19 @@ public enum PatternMode {
 
     public boolean isRegex() {
         return (id & 0x80000000) != 0;
+    }
+
+    /**
+     * 获取原规则内容是否是当前模式
+     *
+     * @param pattern 原规则内容
+     * @return 是否是当前模式
+     */
+    public boolean isThisMode(@NotNull String pattern) {
+        if (pattern.startsWith(IGNORE_CASE)) {
+            return pattern.substring(IGNORE_CASE.length()).startsWith(start);
+        }
+        return pattern.startsWith(start);
     }
 
     public static final String IGNORE_CASE = "<i>";
