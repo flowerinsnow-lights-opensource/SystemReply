@@ -25,10 +25,10 @@ example:
   # %(PREFIX) - 前缀，可在messages.yml配置
   # 可选，默认不发送消息
   replies:
-    - %(PREFIX)&b菜单命令：&e/menu
+    - '%(PREFIX)&b菜单命令：&e/menu'
   # 获取触发所需的权限
   permissions:
-    - systemreply.entry.example
+    - 'systemreply.entry.example'
   # 是否允许继续匹配其他消息，允许多次匹配并多次回复，根据条目顺序进行判断，直到pass为false为止
   # 可选，默认true
   pass: true
