@@ -1,5 +1,6 @@
 package online.flowerinsnow.systemreply.command;
 
+import online.flowerinsnow.systemreply.config.Message;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -17,7 +18,12 @@ public class MainCommand implements TabExecutor {
         if (1 == args.length && "reload".equalsIgnoreCase(args[0])) {
             if (sender.hasPermission("systemreply.reload")) {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ""));
+                Message.Command.RELOAD.send(sender);
+            } else {
+                Message.Command.NO_PERMISSION.send(sender, "systemreply.reload");
             }
+        } else {
+            Message.Command.USAGE.send(sender);
         }
         return true;
     }

@@ -3,12 +3,14 @@ package online.flowerinsnow.systemreply;
 import cc.carm.lib.mineconfiguration.bukkit.MineConfiguration;
 import cc.carm.lib.mineconfiguration.bukkit.source.BukkitConfigProvider;
 import online.flowerinsnow.systemreply.api.SystemReplyAPI;
+import online.flowerinsnow.systemreply.command.MainCommand;
 import online.flowerinsnow.systemreply.config.Config;
 import online.flowerinsnow.systemreply.config.Message;
 import online.flowerinsnow.systemreply.impl.SystemReplyCore;
 import online.flowerinsnow.systemreply.impl.manager.EntriesManagerImpl;
 import online.flowerinsnow.systemreply.listener.ChatListener;
 import online.flowerinsnow.systemreply.util.DebugUtils;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventPriority;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.Objects;
+import java.util.Optional;
 
 public class SystemReplyPlugin extends JavaPlugin {
     private static SystemReplyPlugin instance;
@@ -40,6 +43,9 @@ public class SystemReplyPlugin extends JavaPlugin {
 
         DebugUtils.tryDebug(1, "注册监听器...");
         getServer().getPluginManager().registerEvents(new ChatListener(), this);
+
+        DebugUtils.tryDebug(1, "注册命令");
+        registerCommand("systemreply", new MainCommand());
     }
 
     @Override
@@ -105,6 +111,14 @@ public class SystemReplyPlugin extends JavaPlugin {
 
     public YamlConfiguration getEntriesConfig() {
         return entriesConfig;
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private void registerCommand(String cmd, TabExecutor executor) {
+        Optional.ofNullable(getCommand(cmd)).ifPresent(c -> {
+            c.setExecutor(executor);
+            c.setTabCompleter(executor);
+        });
     }
 
     public static SystemReplyPlugin getInstance() {

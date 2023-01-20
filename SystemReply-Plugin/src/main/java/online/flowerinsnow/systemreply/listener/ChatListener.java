@@ -102,7 +102,7 @@ public class ChatListener implements Listener {
 
     private void sendReplies(CommandSender sender, IEntry entry) {
         entry.getReplies().forEach(reply ->
-                sender.sendMessage(MessageUtils.parseColour(entry.getName())
+                sender.sendMessage(MessageUtils.parseColour(reply)
                         .replace("%(PREFIX)", Message.PREFIX.getNotNull())
                 )
         );

@@ -2,3 +2,15 @@ main: online.flowerinsnow.systemreply.SystemReplyPlugin
 name: SystemReplyPlugin
 version: ${project.version}
 author: flowerinsnow
+commands:
+  systemreply:
+permissions:
+  systemreply.*:
+    default: op
+    children:
+      - 'systemreply.reload'
+      - 'systemreply.tab'
+  systemreply.reload:
+    default: op
+  systemreply.tab:
+    default: op
