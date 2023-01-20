@@ -1,5 +1,5 @@
 main: online.flowerinsnow.systemreply.SystemReplyPlugin
-name: SystemReplyPlugin
+name: SystemReply
 version: ${project.version}
 author: flowerinsnow
 commands:

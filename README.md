@@ -1,6 +1,9 @@
 # SystemReply
 Bukkit/系统自动回复
 
+## 效果
+![alt result.png](images/result.png)
+
 # 配置
 一切条目位于`entries.yml`的根节点下
 
@@ -46,3 +49,58 @@ example:
 
 # 权限
 拥有`systemreply.tab`的玩家可以使用TAB补全
+
+# API
+## 引入仓库
+正在施工...
+
+由于最近服务器不在手边，部署不了依赖
+
+## 导入依赖
+```xml
+<dependency>
+    <groupId>online.flowerinsnow</groupId>
+    <artifactId>SystemReply-API</artifactId>
+    <version>1.0.0</version>
+    <scope>provided</scope>
+    <optional>true</optional>
+</dependency>
+```
+
+## 后续步骤
+### 依赖指定
+`plugin.yml`
+```yaml
+depend:
+  - SystemReply
+```
+
+### 软依赖
+或者，这不是必须的，那就
+`plugin.yml`
+```yaml
+softdepend:
+  - SystemReply
+```
+然后在插件中可以这么判断
+```java
+public void onEnable(){
+    if (getServer().getPluginManager().isPluginEnabled("SystemReply")) {
+        getLogger().info("前置插件SystemReply已加载，可以使用API");
+    }
+}
+```
+
+### 调用入口
+```java
+online.flowerinsnow.systemreply.api.SystemReplyAPI.getInstance()
+```
+其他不写了，去看javadoc去ww
+
+# 使用的第三方依赖库
+[MineConfiguration](https://github.com/CarmJos/MineConfiguration) By [@CarmJos](https://github.com/CarmJos) (LGPL-3.0 license)
+
+# 开源协议
+使用[GPL 3.0](https://www.gnu.org/licenses/gpl-3.0.html)作为基础协议
+
+除非二次分发，否则不需要开源
