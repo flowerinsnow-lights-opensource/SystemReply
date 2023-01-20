@@ -1,5 +1,6 @@
 package online.flowerinsnow.systemreply.command;
 
+import online.flowerinsnow.systemreply.SystemReplyPlugin;
 import online.flowerinsnow.systemreply.config.Message;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -17,6 +18,7 @@ public class MainCommand implements TabExecutor {
         if (1 == args.length && "reload".equalsIgnoreCase(args[0])) {
             if (sender.hasPermission("systemreply.reload")) {
                 Message.Command.RELOAD.send(sender);
+                SystemReplyPlugin.getInstance().reloadConfig();
             } else {
                 Message.Command.NO_PERMISSION.send(sender, "systemreply.reload");
             }
