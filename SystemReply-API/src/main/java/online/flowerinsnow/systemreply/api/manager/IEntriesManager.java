@@ -19,29 +19,22 @@ public interface IEntriesManager {
     @NotNull Set<IEntry> getEntries();
 
     /**
-     * 设置所有条目
-     *
-     * @param entries 所有条目
-     */
-    void setEntries(@NotNull Collection<IEntry> entries);
-
-    /**
      * 创建条目
      *
      * @param name 条目名
      * @param replies 回复消息列表
      * @param pass 是否允许继续匹配其他消息
-     * @param async 是否在判断时异步，用于大规模匹配
      * @param block 阻止该消息发送出去
      * @param requiredPermissions 触发该条目所需的权限
+     * @param after 是否在玩家消息发送出去之后再回复玩家
      */
     @NotNull IEntry createEntry(
             @NotNull String name,
             @Nullable Collection<String> replies,
             boolean pass,
-            boolean async,
             boolean block,
-            Collection<String> requiredPermissions
+            @Nullable Collection<String> requiredPermissions,
+            boolean after
     );
 
     /**

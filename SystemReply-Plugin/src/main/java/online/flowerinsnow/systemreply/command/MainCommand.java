@@ -16,7 +16,7 @@ public class MainCommand implements TabExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, @NotNull String[] args) {
         if (1 == args.length && "reload".equalsIgnoreCase(args[0])) {
             if (sender.hasPermission("systemreply.reload")) {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c您没有使用该命令的权限"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ""));
             }
         }
         return true;

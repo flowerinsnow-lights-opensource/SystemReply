@@ -28,7 +28,11 @@
                     <relocations>
                         <relocation>
                             <pattern>cc.carm.lib.configuration</pattern>
-                            <shadedPattern>shaded.io.netty</shadedPattern>
+                            <shadedPattern>online.flowerinsnow.systemreply.shaded.cc.carm.lib.configuration</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>cc.carm.lib.mineconfiguration</pattern>
+                            <shadedPattern>online.flowerinsnow.systemreply.shaded.cc.carm.lib.mineconfiguration</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
@@ -42,6 +46,13 @@
                 </executions>
             </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 
     <repositories>
@@ -67,15 +78,15 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.13.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>24.0.0</version>
             <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
 
         <dependency>

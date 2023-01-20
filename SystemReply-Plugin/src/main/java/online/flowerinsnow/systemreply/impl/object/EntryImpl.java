@@ -1,4 +1,4 @@
-package online.flowerinsnow.systemreply.impl;
+package online.flowerinsnow.systemreply.impl.object;
 
 import online.flowerinsnow.systemreply.SystemReplyPlugin;
 import online.flowerinsnow.systemreply.api.object.IEntry;
@@ -13,21 +13,21 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public class EntryImpl implements IEntry {
-    private String name;
+    @NotNull private String name;
     private HashSet<IPattern> patterns;
-    private ArrayList<String> replies;
+    @NotNull private ArrayList<String> replies;
     private boolean pass;
-    private boolean async;
     private boolean block;
-    private HashSet<String> requiredPermissions;
+    @NotNull private HashSet<String> requiredPermissions;
+    private boolean after;
 
-    public EntryImpl(@NotNull String name, @Nullable Collection<String> replies, boolean pass, boolean async, boolean block, @Nullable Collection<String> requiredPermissions) {
+    public EntryImpl(@NotNull String name, @Nullable Collection<String> replies, boolean pass, boolean block, @Nullable Collection<String> requiredPermissions, boolean after) {
         this.name = ValidateUtils.notNull(name, "name");
         this.replies = replies == null ? new ArrayList<>() : new ArrayList<>(replies);
         this.pass = pass;
-        this.async = async;
         this.block = block;
         this.requiredPermissions = requiredPermissions == null ? new HashSet<>() : new HashSet<>(requiredPermissions);
+        this.after = after;
     }
 
     @Override
@@ -78,7 +78,7 @@ public class EntryImpl implements IEntry {
         config.set(this.name + config.options().pathSeparator() + "patterns", list);
     }
 
-    private void setPatternDirect(@Nullable Collection<IPattern> patterns) {
+    public void setPatternDirect(@Nullable Collection<IPattern> patterns) {
         this.patterns = patterns == null ? new HashSet<>() : new HashSet<>(patterns);
     }
 
@@ -116,18 +116,6 @@ public class EntryImpl implements IEntry {
     }
 
     @Override
-    public boolean isAsync() {
-        return async;
-    }
-
-    @Override
-    public void setAsync(boolean async) {
-        this.async = async;
-        YamlConfiguration config = SystemReplyPlugin.getInstance().getEntriesConfig();
-        config.set(this.name + config.options().pathSeparator() + "async", this.async);
-    }
-
-    @Override
     public boolean isBlock() {
         return block;
     }
@@ -140,7 +128,7 @@ public class EntryImpl implements IEntry {
     }
 
     @Override
-    public @NotNull HashSet<String> requiredPermissions() {
+    public @NotNull HashSet<String> getRequiredPermissions() {
         return new HashSet<>(this.requiredPermissions);
     }
 
@@ -152,7 +140,54 @@ public class EntryImpl implements IEntry {
     }
 
     @Override
-    public void delete() {
+    public boolean isAfter() {
+        return after;
+    }
 
+    @Override
+    public void setAfter(boolean after) {
+        this.after = after;
+        YamlConfiguration config = SystemReplyPlugin.getInstance().getEntriesConfig();
+        config.set(this.name + config.options().pathSeparator() + "after", this.after);
+    }
+
+    @Override
+    public void delete() {
+        SystemReplyPlugin.getInstance().getEntriesConfig().set(name, null);
+        SystemReplyPlugin.getCore().getEntriesManager().entries.remove(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof EntryImpl)) return false;
+        EntryImpl that = (EntryImpl) o;
+        return pass == that.pass && block == that.block && name.equals(that.name) && Objects.equals(patterns, that.patterns) && replies.equals(that.replies) && requiredPermissions.equals(that.requiredPermissions) && after == that.after;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + name.hashCode();
+        result = 31 * result + (patterns != null ? patterns.hashCode() : 0);
+        result = 31 * result + replies.hashCode();
+        result = 31 * result + Boolean.hashCode(pass);
+        result = 31 * result + Boolean.hashCode(block);
+        result = 31 * result + requiredPermissions.hashCode();
+        result = 31 * result + Boolean.hashCode(after);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "EntryImpl{" +
+                "name='" + name + '\'' +
+                ", patterns=" + patterns +
+                ", replies=" + replies +
+                ", pass=" + pass +
+                ", block=" + block +
+                ", requiredPermissions=" + requiredPermissions +
+                ", after=" + after +
+                '}';
     }
 }

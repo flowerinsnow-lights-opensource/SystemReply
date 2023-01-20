@@ -79,20 +79,6 @@ public interface IEntry {
     void setPass(boolean pass);
 
     /**
-     * 获取是否在判断时异步，用于大规模匹配
-     *
-     * @return 是否在判断时异步
-     */
-    boolean isAsync();
-
-    /**
-     * 设置是否在判断时异步
-     *
-     * @param async 是否在判断时异步
-     */
-    void setAsync(boolean async);
-
-    /**
      * 是否阻止该消息发送出去
      *
      * @return 是否阻止该消息发送出去
@@ -111,7 +97,7 @@ public interface IEntry {
      *
      * @return 触发该条目所需的权限
      */
-    @NotNull Set<String> requiredPermissions();
+    @NotNull Set<String> getRequiredPermissions();
 
     /**
      * 设置触发该条目所需的权限
@@ -119,6 +105,20 @@ public interface IEntry {
      * @param requiredPermissions 触发该条目所需的权限
      */
     void setRequiredPermissions(@Nullable Collection<String> requiredPermissions);
+
+    /**
+     * 获取是否在玩家的消息发送出去之后将回复发送给玩家
+     *
+     * @return 在玩家的消息发送出去之后将回复发送给玩家
+     */
+    boolean isAfter();
+
+    /**
+     * 设置在玩家的消息发送出去之后将回复发送给玩家
+     *
+     * @param after 在玩家的消息发送出去之后将回复发送给玩家
+     */
+    void setAfter(boolean after);
 
     /**
      * 删除该条目

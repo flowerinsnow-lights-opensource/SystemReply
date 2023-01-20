@@ -1,0 +1,4 @@
+main: online.flowerinsnow.systemreply.SystemReplyPlugin
+name: SystemReplyPlugin
+version: ${project.version}
+author: flowerinsnow

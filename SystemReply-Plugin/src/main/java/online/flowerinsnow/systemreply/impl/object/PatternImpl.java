@@ -1,4 +1,4 @@
-package online.flowerinsnow.systemreply.impl;
+package online.flowerinsnow.systemreply.impl.object;
 
 import online.flowerinsnow.systemreply.api.object.IEntry;
 import online.flowerinsnow.systemreply.api.object.IPattern;
