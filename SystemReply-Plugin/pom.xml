@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>online.flowerinsnow</groupId>
-        <artifactId>SystemReply-parent</artifactId>
-        <version>1.0.0</version>
+        <artifactId>systemreply-parent</artifactId>
+        <version>1.1.0</version>
     </parent>
 
-    <artifactId>SystemReply-Plugin</artifactId>
+    <artifactId>systemreply-Plugin</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -70,7 +70,7 @@
     <dependencies>
         <dependency>
             <groupId>online.flowerinsnow</groupId>
-            <artifactId>SystemReply-API</artifactId>
+            <artifactId>systemreply-API</artifactId>
             <version>${project.parent.version}</version>
             <scope>compile</scope>
         </dependency>
