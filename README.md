@@ -52,9 +52,12 @@ example:
 
 # API
 ## 引入仓库
-正在施工...
-
-由于最近服务器不在手边，部署不了依赖
+```xml
+<repository>
+    <id>SystemReply</id>
+    <url>https://maven.pkg.github.com/flowerinsnow-lights-opensource/SystemReply</url>
+</repository>
+```
 
 ## 导入依赖
 ```xml
