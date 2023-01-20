@@ -122,7 +122,6 @@ public class PatternImpl implements IPattern {
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + ownerEntry.hashCode();
         result = 31 * result + pattern.hashCode();
         result = 31 * result + mode.hashCode();
         result = 31 * result + Boolean.hashCode(ignoreCase);
