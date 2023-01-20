@@ -116,7 +116,7 @@ public class PatternImpl implements IPattern {
         if (this == o) return true;
         if (!(o instanceof PatternImpl)) return false;
         PatternImpl that = (PatternImpl) o;
-        return ignoreCase == that.ignoreCase && ownerEntry.equals(that.ownerEntry) && pattern.equals(that.pattern) && mode == that.mode;
+        return ignoreCase == that.ignoreCase && pattern.equals(that.pattern) && mode == that.mode;
     }
 
     @Override
@@ -131,8 +131,7 @@ public class PatternImpl implements IPattern {
     @Override
     public String toString() {
         return "PatternImpl{" +
-                "ownerEntry=" + ownerEntry +
-                ", pattern='" + pattern + '\'' +
+                "pattern='" + pattern + '\'' +
                 ", mode=" + mode +
                 ", ignoreCase=" + ignoreCase +
                 '}';
